@@ -19,7 +19,8 @@ const outDir = resolve(process.argv[2] ?? join(here, '..', 'assets'));
 // ---------- Content -------------------------------------------------------
 
 const NAME = 'Yann Thobena';
-const ROLE = 'Head of AI at Ipanova';
+const ROLE = 'Head of AI at'; // followed by the Ipanova logo
+const COMPANY = 'Ipanova';
 
 // The career path. Points without a label only shape the flat decade.
 // x/y are in the 1200 x 380 viewBox.
@@ -34,7 +35,7 @@ const PATH = [
   { x: 1076, y: 112, year: '2026', label: 'Head of AI', place: 'above-left', current: true },
 ];
 
-const ALT_TITLE = `${NAME}, ${ROLE}`;
+const ALT_TITLE = `${NAME}, ${ROLE} ${COMPANY}`;
 const ALT_DESC =
   'Career path drawn as a line: ten years in sales and store management from 2010, ' +
   'developer in 2021, then tech lead, AI consultant, AI lead, and Head of AI in 2026.';
@@ -46,7 +47,9 @@ const THEMES = {
     bg: '#0A0A0A',
     border: '#262626',
     name: '#FAFAFA',
-    role: '#C4B5FD', // violet-300
+    role: '#A3A3A3', // neutral, so the logo carries the color
+    logoLetters: '#FAFAFA', // Ipanova "Light", the blue is unreadable on black
+    logoDots: '#51BECC', // Ipanova turquoise
     label: '#D4D4D4',
     year: '#A78BFA', // violet-400
     lineFrom: '#6D28D9', // violet-700: the business decade, quieter
@@ -61,7 +64,9 @@ const THEMES = {
     bg: '#FFFFFF',
     border: '#E5E5E5',
     name: '#0A0A0A',
-    role: '#6D28D9', // violet-700
+    role: '#525252',
+    logoLetters: '#00688A', // official logo colors
+    logoDots: '#51BECC',
     label: '#404040',
     year: '#7C3AED',
     lineFrom: '#C4B5FD',
@@ -84,6 +89,44 @@ function loadFont(weight) {
 const INTER = { 500: loadFont(500), 600: loadFont(600), 700: loadFont(700) };
 
 const r1 = (n) => Math.round(n * 10) / 10;
+
+// ---------- Ipanova logo --------------------------------------------------
+
+// Official SVG from the Ipanova design system. Class st0 = turquoise dots,
+// st1 = letters. It is inlined in the banner because an SVG displayed
+// through <img> cannot load another file.
+function loadLogo(file) {
+  const src = readFileSync(file, 'utf8');
+  const [minX, minY, width, height] = src
+    .match(/viewBox="([^"]+)"/)[1]
+    .trim()
+    .split(/[\s,]+/)
+    .map(Number);
+  const paths = [...src.matchAll(/<path class="(st\d)" d="([^"]+)"\s*\/>/g)].map(([, cls, d]) => ({ cls, d }));
+  if (paths.length === 0) throw new Error(`No logo paths found in ${file}`);
+  return { minX, minY, width, height, paths };
+}
+const LOGO = loadLogo(join(here, 'ipanova-logo.svg'));
+// Letter metrics in logo units: top of the lowercase letters and baseline.
+const LOGO_X_TOP = 33.3;
+const LOGO_BASELINE = 110.8;
+
+// The wordmark has thin strokes, so at text size it reads lighter than the
+// words around it. Its lowercase letters are drawn 1.4x the text's capitals.
+const LOGO_SCALE = 1.4;
+
+// Logo placed on the same baseline as the role text.
+function logoAfter(roleText, { x, y, size }, t) {
+  const font = INTER[500];
+  const capHeight = ((font.tables.os2?.sCapHeight ?? 0.727 * font.unitsPerEm) / font.unitsPerEm) * size;
+  const s = (capHeight * LOGO_SCALE) / (LOGO_BASELINE - LOGO_X_TOP);
+  const lx = x + roleText.width + 0.32 * size;
+  const ly = y - LOGO_BASELINE * s;
+  const paths = LOGO.paths
+    .map((p) => `<path fill="${p.cls === 'st0' ? t.logoDots : t.logoLetters}" d="${p.d}"/>`)
+    .join('');
+  return `<svg x="${r1(lx)}" y="${r1(ly)}" width="${r1(LOGO.width * s)}" height="${r1(LOGO.height * s)}" viewBox="${LOGO.minX} ${LOGO.minY} ${LOGO.width} ${LOGO.height}" aria-hidden="true">${paths}</svg>`;
+}
 
 // Text as an SVG path. `tracking` is in em (e.g. -0.03).
 function text(str, { x, y, size, weight = 500, tracking = 0 }) {
@@ -221,7 +264,10 @@ function build(themeName) {
   const climbStart = (600 - PATH[0].x) / (current.x - PATH[0].x);
 
   const name = text(NAME, { x: 62, y: 110, size: 66, weight: 700, tracking: -0.03 });
-  const role = text(ROLE, { x: 65, y: 156, size: 27, weight: 500, tracking: -0.01 });
+  // Baseline low enough for the logo's "i" dot to clear the name.
+  const roleOpts = { x: 65, y: 166, size: 27 };
+  const role = text(ROLE, { ...roleOpts, weight: 500, tracking: -0.01 });
+  const logo = logoAfter(role, roleOpts, t);
 
   const labels = PATH.map((p, i) => (p.label ? labelGroup(p, i, t) : '')).join('');
   const nodes = PATH.map((p, i) => (p.label ? node(p, i, t) : '')).join('');
@@ -274,6 +320,7 @@ function build(themeName) {
 
   <path fill="${t.name}" d="${name.d}"/>
   <path fill="${t.role}" d="${role.d}"/>
+  ${logo}
 
   <path class="line" pathLength="1" d="${pathD}" fill="none" stroke="url(#stroke)" stroke-width="3" stroke-linecap="round"/>
   ${nodes}
