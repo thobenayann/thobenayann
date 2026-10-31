@@ -1,0 +1,13 @@
+{
+  "name": "profile-banner",
+  "private": true,
+  "type": "module",
+  "description": "Builds the animated SVG banner of the GitHub profile README.",
+  "scripts": {
+    "build": "node build-banner.mjs"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "opentype.js": "1.3.4"
+  }
+}
