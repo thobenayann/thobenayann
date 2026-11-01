@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/banner-dark.svg">
-  <img src="./assets/banner-light.svg" width="100%" alt="Yann Thobena, Head of AI at Ipanova. A line traces his career: ten years in sales and store management from 2010, developer in 2021, then tech lead, AI consultant, AI lead, and Head of AI in 2026.">
+  <img src="./assets/banner-light.svg" width="100%" alt="Yann Thobena, Head of AI at Ipanova. A line traces his career: sales and store management from 2010, career switch to software in 2020, tech lead in 2023, AI consultant in 2024, AI lead in 2025, and Head of AI in 2026.">
 </picture>
 
 <p>
@@ -10,28 +10,41 @@
 
 I run the AI practice at [Ipanova](https://www.ipanova.com), a French consulting firm based in Toulouse that works on SAP, data and custom software. My job is to take AI past the demo and into the tools people use at work, from the first scoping workshop down to the code.
 
-I came to software late. For ten years I sold industrial and welding equipment, then ran the store, before retraining as a developer in 2021. Sales taught me to scope a need and put a price on it. I still start every project with the person who will use the tool.
+I came to software late. For ten years I sold industrial and welding equipment, then ran the store, before retraining as a developer in 2020. Sales taught me to scope a need and put a price on it. I still start every project with the person who will use the tool.
 
 ## What I'm working on
 
 - Building Ipanova's AI offer around four areas: strategy and governance, training, AI inside business processes and the ERP, and custom apps with agents.
 - With our IT and security teams, getting the company ready for ISO/IEC 42001, the management standard for AI systems.
-- Since July 2025, consulting for Airbus on GenAI adoption.
+- Since July 2025, working with Airbus teams on how they use AI day to day, and building their workflows on the Google Gemini ecosystem.
 - IANova, the internal program where our consultants share AI tools and methods. I host its monthly session.
 - Spec-driven development, which I teach to developer teams on client projects: the spec comes first, then agents generate the code.
-- Hermes, my self-hosted agent, built on the open-source Hermes Agent from Nous Research. It sends me an AI briefing on Signal every day and answers by voice. A few colleagues use it too, with restricted access.
 
 ## Selected work
 
 | Project | What it does | Built with |
 | --- | --- | --- |
-| [Job Market Intelligence](https://github.com/thobenayann/job-market-intelligence) | Turns France Travail and Adzuna job listings into a hiring dashboard for AI and SAP roles, in France and the US. | Python, Streamlit |
 | JKD 31 analytics (private repo) | Collects my martial arts club's Facebook, Instagram, website and contact data every night. On Sundays, Hermes reads the numbers through an MCP server and writes the weekly analysis. | n8n, Python, Postgres, Next.js, MCP |
-| [Ipacoinche](https://github.com/thobenayann/ipacoinche) ([live](https://ipacoinche.vercel.app)) | Mobile-first tournament manager for Coinche, the French card game. | Next.js 16, Prisma, shadcn/ui |
-| [Hexo'print](https://github.com/thobenayann/hexoprint) ([live](https://hexoprint.vercel.app)) | Website for an artisan 3D printing business. | Next.js, Sanity, Vercel |
-| [JKD Self Defense 31](https://github.com/thobenayann/jkd-31) ([live](https://jkd-31.vercel.app)) | Website of the Jeet Kune Do club where I handle multimedia. | Next.js, Sanity |
+| Hermes (self-hosted) | My personal agent since August 2026, built on the open-source Hermes Agent from Nous Research. It writes a daily AI briefing that I read and answer on Signal, by text or voice. A second, isolated agent handles the web, and a few colleagues have restricted access. | Hermes Agent, Signal, VPS |
+| [Job Market Intelligence](https://github.com/thobenayann/job-market-intelligence) | Turns France Travail and Adzuna job listings into a hiring dashboard for AI and SAP roles, in France and the US. | Python, Streamlit |
+| [Ipanova design system](https://github.com/thobenayann/ipanova-design-system) | Ipanova's brand guidelines written for LLMs. Give an agent two Markdown files and a brief, and it produces on-brand slides for Canva, Google Slides or PowerPoint. | DESIGN.md, Markdown |
 
-Case studies and older projects are on [yanndevweb.com](https://www.yanndevweb.com/work).
+I also build and maintain websites for small businesses and associations, like [Hexo'print](https://hexoprint.vercel.app) (3D printing) and [JKD Self Defense 31](https://jkd-31.vercel.app), my martial arts club. Case studies are on [yanndevweb.com](https://www.yanndevweb.com/work).
+
+## Path
+
+| When | What |
+| --- | --- |
+| 2010 | Sales, then store manager, in industrial and welding equipment |
+| Aug 2020 | Career switch: web development bootcamp at O'Clock |
+| Jan 2021 | State certification as a web and mobile developer (two-year degree level) |
+| Oct 2021 | Work-study at Ipanova as a fullstack developer |
+| Jan 2023 | State certification as an application designer and developer (bachelor's level) |
+| Oct 2023 | Tech lead at Ipanova |
+| Oct 2024 | AI consultant and automation engineer |
+| Jul 2025 | AI consultant for Airbus: AI adoption and Gemini workflows |
+| Sep 2025 | AI lead, in charge of sharing AI knowledge across Ipanova |
+| Jan 2026 | Head of AI at Ipanova |
 
 ## Stack
 
