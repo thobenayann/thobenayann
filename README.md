@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/banner-dark.svg">
-  <img src="./assets/banner-light.svg" width="100%" alt="Yann Thobena, Head of AI at Ipanova. A line traces his career: sales and store management from 2010, career switch to software in 2020, tech lead in 2023, AI consultant in 2024, AI lead in 2025, and Head of AI in 2026.">
+  <img src="./assets/banner-light.svg" width="100%" alt="Yann Thobena, Head of AI at Ipanova. A line traces his career: sales and store management from 2010, career switch to application design in 2020, tech lead in 2023, AI consultant in 2024, AI lead in 2025, and Head of AI in 2026.">
 </picture>
 
 <p>

@@ -28,7 +28,7 @@ const PATH = [
   { x: 64, y: 300, year: '2010', label: 'Sales, then store manager', place: 'below', dy: 38 },
   { x: 300, y: 300 },
   { x: 470, y: 300 },
-  { x: 600, y: 300, year: '2020', label: 'Career switch to code', place: 'below', dy: 38 },
+  { x: 600, y: 300, year: '2020', label: 'Career switch to application design', place: 'below', dy: 38 },
   { x: 728, y: 280, year: '2023', label: 'Tech lead', place: 'below' },
   { x: 850, y: 246, year: '2024', label: 'AI consultant', place: 'below' },
   { x: 966, y: 192, year: '2025', label: 'AI lead', place: 'below' },
@@ -38,7 +38,7 @@ const PATH = [
 const ALT_TITLE = `${NAME}, ${ROLE} ${COMPANY}`;
 const ALT_DESC =
   'Career path drawn as a line: sales and store management from 2010, career switch ' +
-  'to software in 2020, tech lead in 2023, AI consultant in 2024, AI lead in 2025, ' +
+  'to application design in 2020, tech lead in 2023, AI consultant in 2024, AI lead in 2025, ' +
   'and Head of AI at Ipanova in 2026.';
 
 // ---------- Themes (tokens taken from yanndevweb.com) ---------------------
